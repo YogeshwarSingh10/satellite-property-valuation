@@ -14,7 +14,7 @@ outputs/
 
 # IDE
 .vscode/
-.code-workspace/
+*.code-workspace
 
 # Python junk
 __pycache__/
