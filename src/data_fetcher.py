@@ -5,7 +5,7 @@ import pandas as pd
 from tqdm import tqdm
 
 
-CSV_PATH = "data/raw/train.csv"
+CSV_PATH = "data/raw/test.csv"
 OUTPUT_DIR = "data/images"
 
 STYLE_ID = "mapbox/satellite-v9"
