@@ -15,8 +15,15 @@ class ImageDataset(Dataset):
         return len(self.image_files)
 
     def __getitem__(self, idx):
-        img_path = os.path.join(self.image_dir, self.image_files[idx])
+        filename = self.image_files[idx]
+        img_path = os.path.join(self.image_dir, filename)
+
         image = Image.open(img_path).convert("RGB")
         image = self.transform(image)
-        return image
+
+        # extract ID from filename (e.g. "123456.png" → 123456)
+        image_id = int(os.path.splitext(filename)[0])
+
+        return image, image_id
+
 

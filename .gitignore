@@ -19,8 +19,12 @@ outputs/
 # Python junk
 __pycache__/
 .ipynb_checkpoints/
+*.egg-info
 
 # OS junk
 .DS_Store
 Thumbs.db
 EOF
+
+#zip files for Kaggle
+*.zip

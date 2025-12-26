@@ -36,15 +36,22 @@ def main():
     )
 
     embeddings = []
-
+    ids = []
+    
     with torch.no_grad():
-        for images in loader:
+        for images, image_ids in loader:
             images = images.to(device)
-            feats = model(images)        # (B, 1280)
+            feats = model(images)
+    
             embeddings.append(feats.cpu())
+            ids.extend(image_ids.numpy())
+    
 
     embeddings = torch.cat(embeddings, dim=0).numpy()
+    ids = np.array(ids)
+    
     np.save("outputs/image_embeddings.npy", embeddings)
+    np.save("outputs/image_ids.npy", ids)
 
     print(f"Saved embeddings: {embeddings.shape}")
 
