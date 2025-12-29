@@ -5,9 +5,9 @@ import pandas as pd
 TARGET_COL = "price"
 
 DROP_COLS = [
-    "id",          # identifier
-    "zipcode",     # redundant with lat/long
+    "zipcode",   # redundant with lat/long
 ]
+
 
 def add_date_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
@@ -29,24 +29,24 @@ def add_renovation_feature(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def preprocess_tabular(df: pd.DataFrame, is_train: bool = True) -> pd.DataFrame:
-    """
-    Apply all tabular preprocessing.
-    If is_train=True, target transformations are applied.
-    """
     df = df.copy()
+
+    # Set identifier as index (critical)
+    if "id" in df.columns:
+        df = df.set_index("id")
 
     # Feature engineering
     df = add_date_features(df)
     df = add_renovation_feature(df)
 
-    # Drop columns
+    # Drop non-feature columns
     df = df.drop(columns=DROP_COLS, errors="ignore")
 
     if is_train:
-        # Target transform
         df["log_price"] = np.log(df[TARGET_COL])
 
     return df
+
 
 
 def split_features_target(df: pd.DataFrame):
