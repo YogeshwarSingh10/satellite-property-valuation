@@ -2,16 +2,7 @@
 
 This repository contains the complete submission for the **Satellite Imagery Based Property Valuation** project.
 
----
 
-## Repository Structure
-.
-├── data_fetcher.py
-├── preprocessing.ipynb
-├── model_training.ipynb
-├── enrollno_final.csv
-├── enrollno_report.pdf
-└── README.md
 
 ---
 
